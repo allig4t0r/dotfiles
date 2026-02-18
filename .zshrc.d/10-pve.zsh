@@ -1,0 +1,1 @@
+# export PROXMOX_VE_API_TOKEN="terraform@pve!provider=<changeme>"
