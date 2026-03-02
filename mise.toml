@@ -1,0 +1,91 @@
+[[env]]
+GIT_USERNAME = "allig4t0r"
+GIT_REPO_PATH = "{{ config_root }}"
+
+# -----------------------------------------------------------------------------
+
+[tools]
+"pipx:mypy" = "latest"
+ruff = "latest"
+python = "latest"
+
+# -----------------------------------------------------------------------------
+
+[tasks."module:ensure"]
+description = "Mount module"
+alias = "plug"
+usage = '''
+  arg "<module>" var=#true help="Name of the plug to connect to"
+  complete "module" run="ls -l ~/.dotfiles | awk '$1 ~ /^d.*/ {print $NF}'"
+'''
+wait_for = [
+  "module:regenerate"
+]
+tools.python = "latest"
+run = "./dots ensure {{ arg(name='module') }}"
+
+[tasks."module:regenerate"]
+description = "Regenerate dots state"
+run = [
+  "rm -rf {{ [xdg_state_home, '9dots', '*'] | join_path }}",
+  "./dots regenerate"
+]
+
+[tasks."module:drop"]
+description = "Unmount plug"
+alias = "unplug"
+usage = '''
+  arg "<module>" var=#true help="Name of the plug to disconnect"
+  complete "module" run="ls -l ~/.dotfiles | awk '$1 ~ /^d.*/ {print $NF}'"
+'''
+wait_for = [
+  "module:regenerate"
+]
+tools.python = "latest"
+run = "./dots drop {{ arg(name='module') }}"
+
+
+# -----------------------------------------------------------------------------
+# PYTHON
+# -----------------------------------------------------------------------------
+
+[tasks."python"]
+description = "Run Python routines"
+depends = [
+  "python:*",
+]
+
+[tasks."python:format"]
+description = "Run all Python formatters"
+tools.fd = "latest"
+depends = [
+  "python:format:*"
+]
+
+[tasks."python:lint"]
+description = "Run all Python linters"
+tools.fd = "latest"
+wait_for = [
+  "python:format:*"
+]
+depends = [
+  "python:lint:*"
+]
+
+[tasks."python:lint:ruff"]
+description = "Run Ruff (linter)"
+tools.ruff = "latest"
+tools.fd = "latest"
+run = "9fl -a dots | xargs ruff check"
+
+[tasks."python:lint:mypy"]
+description = "Run MyPy"
+tools."pipx:mypy" = "latest"
+tools.fd = "latest"
+run = "9fl -a dots | xargs -n 1 mypy"
+
+[tasks."python:format:ruff"]
+description = "Run Ruff (format)"
+tools.ruff = "latest"
+tools.fd = "latest"
+run = "9fl -a dots | xargs ruff format"

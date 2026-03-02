@@ -10,11 +10,12 @@ rust = "latest"
 sops = "latest"
 uv = "latest"
 usage = "latest"
+gitleaks = "latest"
+pre-commit = "latest"
 
 "cargo:git-absorb" = "latest"
 "cargo:mergiraf" = "latest"
-"cargo:shpool" = { version = "latest", os = ["linux"]}
-#"github:atanunq/viu" = "latest"
+#"cargo:shpool" = { version = "latest", os = ["linux"]}
 "github:crate-ci/typos" = "latest"
 "github:eza-community/eza" = "latest"
 "github:lusingander/serie" = "latest"
@@ -33,6 +34,7 @@ shellcheck = "latest"
 tmux = "latest"
 zellij = "latest"
 zoxide = "latest"
+
 
 # LSP
 #"npm:bash-language-server" = "latest"

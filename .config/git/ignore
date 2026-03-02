@@ -1,0 +1,6 @@
+__pycache__/
+*.py[co]
+.gutctags
+*.orig
+.mise-tasks/
+mise.local.toml

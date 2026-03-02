@@ -20,4 +20,4 @@
 --glob=!{package-lock.json}
 
 # i use kitty
---hyperlink-format=kitty
+#--hyperlink-format=kitty

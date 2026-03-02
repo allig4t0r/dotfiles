@@ -1,3 +1,4 @@
+alias bu="brew upgrade --greedy-latest"
 alias cat="bat --theme auto:system --theme-dark default --theme-light GitHub"
 alias dev="cd ~/repos"
 alias docs="cd ~/Documents"
@@ -13,3 +14,6 @@ alias ll="eza -l"
 alias ls="eza"
 alias tf="terraform"
 alias tg="terragrunt"
+
+# Delete all remote tracking Git branches where the upstream branch has been deleted
+alias git_prune="git fetch --prune && git branch -vv | grep 'origin/.*: gone]' | awk '{print \$1}' | xargs git branch -d"

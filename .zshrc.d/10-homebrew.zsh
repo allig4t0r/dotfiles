@@ -1,4 +1,12 @@
-export PATH=/opt/homebrew/opt/grep/libexec/gnubin:$PATH
+# GNU utils path overrides as default CLI tools
+if type brew &>/dev/null; then
+  HOMEBREW_PREFIX=$(brew --prefix)
+  for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
+  export PATH="${HOMEBREW_PREFIX}/opt/gnu-getopt/bin:$PATH"
+  export PATH="${HOMEBREW_PREFIX}/opt/ncurses/bin:$PATH"
+  export PATH="${HOMEBREW_PREFIX}/opt/curl/bin:$PATH"
+  export PATH="${HOMEBREW_PREFIX}/opt/rsync/bin:$PATH"
+fi
 
 export HOMEBREW_BUNDLE_DUMP_DESCRIBE=1
 export HOMEBREW_BUNDLE_FILE=$HOME/.config/brew/Brewfile

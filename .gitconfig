@@ -1,0 +1,90 @@
+[user]
+    email = allig4t0r@gmail.com
+    name  = allig4t0r
+    login = allig4t0r
+[alias]
+    a = add
+    amend = commit --amend --all -C HEAD
+    ap = a --patch
+    ab = !git absorb -r -b $(git pc)
+    apa = ap --all
+    bl = blame --show-stats --date iso
+    cl = clean -fdq
+    clx = cl -x
+    cm = commit -m
+    cma = commit -a -m
+    co = checkout
+    cob = co -b
+    conflicts = !git status --porcelain=2 | awk '$1 ~ /u/ {print $NF}'
+    df = diff --minimal
+    dfc = df --cached
+    dff = difftool
+    dffc = dff --cached
+    fixup = commit --fixup
+    ftch = fetch --tags --atomic
+    gcc = !git reflog expire --expire=all --stale-fix --all && git worktree prune --expire 0 && git gc --prune=all && git repack -a -d -b --depth 200 --window 100
+    gcca = !git gcc && git smf git gcc
+    l = log --date=short '--pretty=format:%C(auto)%h (%ad) %Cgreen%aN%Cblue%d%Creset: %s' --no-merges --abbrev-commit
+    lg = lgg --simplify-by-decoration
+    lgg = l --graph
+    psh = push --atomic
+    pshf = psh --force-with-lease
+    root = rev-parse --show-toplevel
+    rb = rebase --interactive --autosquash --autostash
+    rh = reset --hard
+    rs = restore -SW
+    rss = restore -S
+    rsw = restore -W
+    s = status -sb --find-renames
+    smf = submodule foreach --recursive
+    sw = switch
+[merge]
+    tool = nvimdiff
+    conflictstyle = diff3
+[merge "mergiraf"]
+    name = mergiraf
+    driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
+[mergetool]
+    prompt = false
+[diff]
+    algorithm = histogram
+    tool = difftastic
+    colorMoved = zebra
+[difftool]
+    prompt = false
+[difftool "difftastic"]
+    cmd = difft --skip-unchanged --tab-width 4 --context 5 "$LOCAL" "$REMOTE"
+[push]
+    default = upstream
+    autoSetupRemote = true
+[fetch]
+    parallel = 0
+    recurse-submodules = true
+    prune = true
+    pruneTags = true
+[pull]
+    rebase = true
+[transfer]
+    fsckObjects = true
+[rerere]
+    enabled = 1
+[color]
+    ui = true
+[pager]
+    difftool = true
+[core]
+    autocrlf = false
+    compression = -1
+    eol = lf
+    preloadindex = true
+    untrackedCache = true
+[pack]
+    compression = 9
+    threads     = 8
+[grep]
+    patternType = perl
+    fullName    = true
+[init]
+    defaultBranch = master
+[includeIf "gitdir:/vobs/"]
+    path = /vobs/gitconfig
