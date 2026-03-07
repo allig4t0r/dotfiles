@@ -1,0 +1,50 @@
+[task_config]
+dir = "~"
+
+[tasks."update"]
+description = "Update system"
+depends = [
+  "update:system",
+  "update:dotfiles",
+  "update:mise",
+]
+
+[tasks."update:system"]
+description = "Run system updates"
+depends = [
+  "update:system:{{ os() }}"
+]
+
+[tasks."update:dotfiles"]
+description = "Update dotfiles"
+dir = "{{ get_env(name='HOME', default='~/') }}"
+run = [
+  "chezmoi init",
+  "chezmoi apply",
+  "exec zsh"
+]
+
+[tasks."update:system:macos"]
+description = "Run system updates for MacOS"
+run = [
+  "brew update",
+  "brew upgrade --greedy-latest",
+  "brew autoremove",
+  "brew cleanup --prune=all --scrub",
+  "rm -rf $(brew --cache)",
+]
+
+[tasks."update:mise"]
+description = "Update mise"
+wait_for = [
+  "update:dotfiles",
+  "update:system:macos",
+]
+env = { RUSTUP_INIT_SKIP_PATH_CHECK = "1", MISE_YES="1" }
+run = [
+  "mise self-update 2>/dev/null || true",
+  "mise plugins update",
+  "mise upgrade",
+  "mise prune",
+  "mise reshim"
+]

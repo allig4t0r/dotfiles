@@ -1,0 +1,14 @@
+[username]
+style_user = 'bold yellow'
+style_root = 'bold red'
+format = 'user: [$user]($style) '
+disabled = false
+show_always = true
+detect_env_vars = ['SSH_CONNECTION', 'SSH_CLIENT', 'SSH_TTY']
+
+[hostname]
+ssh_only = true
+format = "<$hostname>"
+trim_at = "-"
+style = "bold dimmed white"
+disabled = false

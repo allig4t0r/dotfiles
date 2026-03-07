@@ -1,0 +1,19 @@
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+indent_style = space
+trim_trailing_whitespace = true
+
+[*.py]
+profile = "black"
+py_version = 314
+line_length = 79
+force_single_line = true
+balanced_wrapping = true
+use_parentheses = true
+lines_before_imports = 1
+lines_after_imports = 2
+group_by_package = true

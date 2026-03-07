@@ -1,0 +1,23 @@
+# do not group by banner
+--no-heading
+
+# ignore bad ignore messages
+--ignore-messages
+
+# ignore files that could not be read
+--no-messages
+
+# activate smartcase
+--smart-case
+
+# search for hidden as well
+--hidden
+
+# exclude git itself from search
+--glob=!{.git,.svn,node_modules,vendor,__pycache__}
+
+# also exclude package-lock.json
+--glob=!{package-lock.json}
+
+# i use kitty
+#--hyperlink-format=kitty
