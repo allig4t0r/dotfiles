@@ -19,6 +19,8 @@ alias tg=terragrunt
 
 alias chz="chezmoi apply && exec zsh"
 alias cha="chezmoi edit --apply"
+alias chp="chezmoi git push"
+alias chc="chezmoi -- git commit -m"
 
 alias g=git
 alias mkdir='mkdir -pv'
