@@ -18,6 +18,7 @@ alias tf=terraform
 alias tg=terragrunt
 
 alias chz="chezmoi apply && exec zsh"
+alias cha="chezmoi edit --apply"
 
 alias g=git
 alias mkdir='mkdir -pv'
