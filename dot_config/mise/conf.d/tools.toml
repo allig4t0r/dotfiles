@@ -32,7 +32,7 @@ dagger = "latest"
 #usage = "latest"
 
 "aqua:kubernetes-sigs/krew" = "latest"
-vcluster = "latest"
+#vcluster = "latest"
 
 "npm:@google/gemini-cli" = "latest"
 

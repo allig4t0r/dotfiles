@@ -1,10 +1,10 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
+
 for ZSH_FILE in "${ZDOTDIR:-$HOME}/.zshrc.d/"*.zsh(N); do
   source "${ZSH_FILE}"
 done
-
-source $ZSH/oh-my-zsh.sh
 
 if (( $+commands[sops] )); then
   eval "$(sops completion zsh)"
