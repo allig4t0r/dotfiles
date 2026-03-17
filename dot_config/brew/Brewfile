@@ -8,12 +8,14 @@ brew "tree"
 brew "ansible"
 # Checks ansible playbooks for practices and behaviour
 brew "ansible-lint"
-# Perf monitoring CLI tool for Apple Silicon
-brew "asitop"
+# GitOps Continuous Delivery for Kubernetes
+brew "argocd"
 # Text-based UI library
 brew "ncurses"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
 # Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
 # CLI to install, manage & troubleshoot Kubernetes clusters running Cilium
@@ -32,6 +34,8 @@ brew "figlet"
 brew "findutils"
 # Lightweight scripting language for querying databases
 brew "flux"
+# Command-line fuzzy finder written in Go
+brew "fzf"
 # GNU awk utility
 brew "gawk"
 # GitHub command-line tool
@@ -68,12 +72,12 @@ brew "grep"
 brew "helm"
 # HTTP load generator, ApacheBench (ab) replacement
 brew "hey"
+# Client library for huggingface.co hub
+brew "hf"
 # Improved top (interactive process viewer)
 brew "htop"
 # Network, Service & Security Observability for Kubernetes using eBPF
 brew "hubble"
-# Client library for huggingface.co hub
-brew "huggingface-cli"
 # Tools and libraries to manipulate images in select formats
 brew "imagemagick"
 # Calculate various network masks, etc. from a given IP address
@@ -92,6 +96,8 @@ brew "kustomize"
 brew "lazyjournal"
 # Pager program similar to more
 brew "less"
+# Apple Silicon Monitor Top written in Go Lang
+brew "mactop"
 # Mac App Store command-line interface
 brew "mas"
 # Terminal-based visual file manager
@@ -128,6 +134,8 @@ brew "testdisk"
 brew "the_silver_searcher"
 # Terminal multiplexer
 brew "tmux"
+# Creates fully functional virtual k8s cluster inside host k8s cluster's namespace
+brew "vcluster"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
 # Internet file retriever
@@ -204,6 +212,7 @@ vscode "github.vscode-github-actions"
 vscode "gitlab.gitlab-workflow"
 vscode "golang.go"
 vscode "hashicorp.terraform"
+vscode "hverlin.mise-vscode"
 vscode "irongeek.vscode-env"
 vscode "mhutchie.git-graph"
 vscode "ms-azuretools.vscode-containers"

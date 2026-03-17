@@ -48,3 +48,10 @@ run = [
   "mise prune",
   "mise reshim"
 ]
+
+[tasks."bundle"]
+description = "Run system updates for MacOS"
+run = [
+  "brew bundle dump --force",
+  "cp ~/.config/brew/Brewfile $(chezmoi source-path)/dot_config/brew/",
+]
