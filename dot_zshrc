@@ -10,6 +10,10 @@ if (( $+commands[sops] )); then
   eval "$(sops completion zsh)"
 fi
 
+if (( $+commands[fzf] )); then
+  eval "$(fzf --zsh)"
+fi
+
 if (( $+commands[zoxide] )); then
   eval "$(zoxide init zsh)"
 fi

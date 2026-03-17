@@ -42,7 +42,7 @@ wait_for = [
 ]
 env = { RUSTUP_INIT_SKIP_PATH_CHECK = "1", MISE_YES="1" }
 run = [
-  "mise self-update 2>/dev/null || true",
+  #"mise self-update 2>/dev/null || true",
   "mise plugins update",
   "mise upgrade",
   "mise prune",
