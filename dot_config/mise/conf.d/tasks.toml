@@ -50,7 +50,7 @@ run = [
 ]
 
 [tasks."bundle"]
-description = "Run system updates for MacOS"
+description = "Make fresh Brewfile bundle and copy it to chezmoi git folder"
 run = [
   "brew bundle dump --force",
   "cp ~/.config/brew/Brewfile $(chezmoi source-path)/dot_config/brew/",
