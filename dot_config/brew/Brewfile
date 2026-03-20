@@ -38,6 +38,8 @@ brew "flux"
 brew "fzf"
 # GNU awk utility
 brew "gawk"
+# Interact with Google Gemini AI models from the command-line
+brew "gemini-cli"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
@@ -90,8 +92,12 @@ brew "istioctl"
 brew "jq"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
+# Tool that can switch between kubectl contexts easily and create aliases
+brew "kubectx"
 # Template-free customization of Kubernetes YAML manifests
 brew "kustomize"
+# Simple terminal UI for git commands
+brew "lazygit"
 # TUI for logs from journalctl, file system, Docker, Podman and Kubernetes pods
 brew "lazyjournal"
 # Pager program similar to more
@@ -108,6 +114,10 @@ brew "mise"
 brew "nano"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# TUI log viewer with timeline histogram and no central server
+brew "nerdlog"
+# OpenBSD freely-licensed SSH connectivity tools
+brew "openssh"
 # Monitor data's progress through a pipe
 brew "pv"
 # Utility that provides fast incremental file transfer
@@ -174,6 +184,8 @@ cask "font-meslo-lg-nerd-font"
 cask "ghostty"
 # Open-source video transcoder
 cask "handbrake-app"
+# UI for Kubernetes
+cask "headlamp"
 # Menu bar application that displays the CPU speed limit due to thermal issues
 cask "hot"
 # Terminal emulator as alternative to Apple's Terminal app
