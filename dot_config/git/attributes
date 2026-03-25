@@ -42,3 +42,14 @@
 *sol merge=mergiraf
 *lua merge=mergiraf
 *rb merge=mergiraf
+Makefile merge=mergiraf
+GNUmakefile merge=mergiraf
+*.tf merge=mergiraf
+*.tfvars merge=mergiraf
+*.hcl merge=mergiraf
+*.md merge=mergiraf
+pyproject.toml merge=mergiraf
+*.ini merge=mergiraf
+go.mod merge=mergiraf
+go.sum merge=mergiraf
+go.work.sum merge=mergiraf
