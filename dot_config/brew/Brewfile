@@ -39,7 +39,7 @@ brew "fzf"
 # GNU awk utility
 brew "gawk"
 # Interact with Google Gemini AI models from the command-line
-brew "gemini-cli"
+brew "gemini-cli", link: false
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
@@ -88,10 +88,14 @@ brew "ipcalc"
 brew "iperf3"
 # Istio configuration command-line utility
 brew "istioctl"
+# JQ clone focussed on correctness, speed, and simplicity
+brew "jaq"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
+# Production Grade K8s Installation, Upgrades, and Management
+brew "kops"
 # Tool that can switch between kubectl contexts easily and create aliases
 brew "kubectx"
 # Template-free customization of Kubernetes YAML manifests
@@ -170,6 +174,10 @@ brew "helmwave/tap/helmwave"
 brew "siderolabs/tap/omnictl"
 # Enable Windows-like alt-tab
 cask "alt-tab"
+# Menu bar icon organiser
+cask "bartender"
+# Menu bar usage monitor for Codex and Claude
+cask "codexbar"
 # Server and cloud storage browser
 cask "cyberduck"
 # Photography workflow application and raw developer
@@ -216,8 +224,10 @@ vscode "4ops.packer"
 vscode "blueglassblock.better-json5"
 vscode "charliermarsh.ruff"
 vscode "chouzz.vscode-better-align"
+vscode "davidanson.vscode-markdownlint"
 vscode "docker.docker"
 vscode "eamodio.gitlens"
+vscode "editorconfig.editorconfig"
 vscode "esbenp.prettier-vscode"
 vscode "github.copilot-chat"
 vscode "github.vscode-github-actions"

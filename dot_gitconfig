@@ -4,7 +4,7 @@
     email = allig4t0r@gmail.com
     signingkey = 2ADA57AAA9EC3F99
 [commit]
-    gpgsign = false
+    gpgsign = true
 [tag]
     gpgSign = true
 [gpg]

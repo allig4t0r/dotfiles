@@ -37,6 +37,7 @@ alias chz="chezmoi apply && exec zsh"
 alias cha="chezmoi edit --apply"
 alias chp="chezmoi git push"
 alias chc="chezmoi -- git commit -m"
+alias che="chezmoi edit"
 
 # Delete all remote tracking Git branches where the upstream branch has been deleted
 alias git_prune="git fetch --prune && git branch -vv | grep 'origin/.*: gone]' | awk '{print \$1}' | xargs git branch -d"

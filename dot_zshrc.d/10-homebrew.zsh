@@ -8,7 +8,7 @@ if type brew &>/dev/null; then
   export PATH="${HOMEBREW_PREFIX}/opt/rsync/bin:$PATH"
 fi
 
-export HOMEBREW_BUNDLE_DUMP_DESCRIBE=1
+export HOMEBREW_BUNDLE_DESCRIBE=1
 export HOMEBREW_BUNDLE_FILE=$HOME/.config/brew/Brewfile
 export HOMEBREW_FORCE_BREWED_CA_CERTIFICATES=1
 export HOMEBREW_FORCE_BREWED_CURL=1
