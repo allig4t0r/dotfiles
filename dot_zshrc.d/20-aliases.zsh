@@ -25,6 +25,7 @@ alias gs="git status"
 alias gl=serie
 alias lg=lazygit
 alias diff=difft
+alias unstage="git reset --"
 
 # terraform
 alias tf=terraform
