@@ -32,6 +32,10 @@ alias tf=terraform
 alias tg=terragrunt
 alias ttf="task tf"
 
+# just
+alias j=just
+alias jt="just tf sync"
+
 # chezmoi
 alias ch=chezmoi
 alias chz="chezmoi apply && exec zsh"

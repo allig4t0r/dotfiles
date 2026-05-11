@@ -16,7 +16,17 @@
   },
   "ui": {
     "footer": {
-      "hideSandboxStatus": true
+      "hideSandboxStatus": true,
+      "showLabels": true,
+      "items": [
+        "workspace",
+        "git-branch",
+        "model-name",
+        "quota",
+        "memory-usage",
+        "context-used",
+        "token-count"
+      ]
     },
     "showMemoryUsage": true
   }
