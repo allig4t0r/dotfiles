@@ -2,40 +2,106 @@
 
 set -euo pipefail
 
-# -------------------------------
-# Global gitleaks pre-commit hook
-# -------------------------------
+# -----------------------------------------
+# Global pre-commit hook
+# - mandatory gitleaks
+# - optional project lefthook
+# -----------------------------------------
 
+# Prevent recursive execution
+if [[ "${GLOBAL_HOOK_RUNNING:-}" == "1" ]]; then
+  exit 0
+fi
+
+export GLOBAL_HOOK_RUNNING=1
+
+# ------------------------------------------------
 # 1. Allow full bypass via environment variable
+# ------------------------------------------------
+
 if [[ "${GITLEAKS_DISABLE:-}" == "1" ]]; then
-  exit 0
+  echo "⚠ Gitleaks disabled via GITLEAKS_DISABLE=1"
+else
+
+  # --------------------------------------------
+  # 2. Allow per-repo opt-out via git config
+  # --------------------------------------------
+
+  if git config --bool hooks.gitleaks.disable 2>/dev/null | grep -q true; then
+    echo "⚠ Gitleaks disabled for this repository"
+  else
+
+    # ----------------------------------------
+    # 3. Skip if gitleaks not installed
+    # ----------------------------------------
+
+    if ! command -v gitleaks >/dev/null 2>&1; then
+      echo "⚠ gitleaks not found — skipping secret scan"
+    else
+
+      # ----------------------------------------
+      # 4. Run staged secret scan
+      # ----------------------------------------
+
+      echo "🔎 Running gitleaks..."
+
+      if ! gitleaks git --pre-commit --redact --staged --verbose; then
+        echo
+        echo "❌ Commit blocked: potential secrets detected."
+        echo
+        echo "Possible actions:"
+        echo "  - Remove the secret"
+        echo "  - Or bypass once:"
+        echo "      GITLEAKS_DISABLE=1 git commit"
+        echo "  - Or disable permanently for this repo:"
+        echo "      git config hooks.gitleaks.disable true"
+        echo "  - Re-enable later:"
+        echo "      git config --unset hooks.gitleaks.disable"
+        exit 1
+      fi
+
+    fi
+  fi
 fi
 
-# 2. Allow per-repo opt-out via config
-if git config --bool hooks.gitleaks.disable 2>/dev/null | grep -q true; then
-  exit 0
+# ------------------------------------------------
+# 5. Delegate to project-local lefthook
+# ------------------------------------------------
+
+if command -v lefthook >/dev/null 2>&1; then
+
+  REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+
+  if [[ -n "$REPO_ROOT" ]]; then
+
+    LEFTHOOK_CONFIG_FOUND="0"
+
+    for config in \
+      "$REPO_ROOT/lefthook.yml" \
+      "$REPO_ROOT/lefthook-local.yml" \
+      "$REPO_ROOT/.lefthook.yml" \
+      "$REPO_ROOT/.lefthook-local.yml" \
+      "$REPO_ROOT/lefthook.yaml" \
+      "$REPO_ROOT/lefthook-local.yaml" \
+      "$REPO_ROOT/.lefthook.yaml" \
+      "$REPO_ROOT/.lefthook-local.yaml" \
+      "$REPO_ROOT/lefthook.toml" \
+      "$REPO_ROOT/lefthook-local.toml" \
+      "$REPO_ROOT/.lefthook.toml" \
+      "$REPO_ROOT/.lefthook-local.toml"
+    do
+      if [[ -f "$config" ]]; then
+        LEFTHOOK_CONFIG_FOUND="1"
+        break
+      fi
+    done
+
+    if [[ "$LEFTHOOK_CONFIG_FOUND" == "1" ]]; then
+
+      cd "$REPO_ROOT"
+      lefthook run pre-commit --no-auto-install
+      echo
+
+    fi
+  fi
 fi
-
-# 3. Skip if gitleaks not installed
-if ! command -v gitleaks >/dev/null 2>&1; then
-  echo "⚠ gitleaks not found — skipping secret scan"
-  exit 0
-fi
-
-# 4. Run scan only on staged changes
-echo "🔎 Running gitleaks..."
-
-if ! gitleaks git --pre-commit --redact --staged --verbose; then
-  echo
-  echo "❌ Commit blocked: potential secrets detected."
-  echo "If this is intentional:"
-  echo "  - Fix the secret"
-  echo "  - Or run: GITLEAKS_DISABLE=1 git commit"
-  echo "  - Or disable in this repo:"
-  echo "        git config hooks.gitleaks.disable true"
-  echo "  - To enable it back:"
-  echo "        git config --unset hooks.gitleaks.disable"
-  exit 1
-fi
-
-exit 0
